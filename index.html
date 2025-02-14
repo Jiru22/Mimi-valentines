@@ -24,15 +24,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        input[type="text"] {
-            padding: 10px;
-            width: 80%;
-            margin-bottom: 10px;
-            border: 2px solid #ff69b4;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        input[type="submit"] {
+        .form-container input[type="button"] {
             padding: 10px;
             background-color: #ff69b4;
             color: white;
@@ -56,13 +48,9 @@
 <body>
     <h1>Will you be my Valentine's date?</h1>
 
-    <!-- Form for user input -->
+    <!-- Form for user input (with a Yes button) -->
     <div class="form-container">
-        <form id="valentine-form" onsubmit="return checkResponse(event)">
-            <label for="response">Type 'yes' to see my gift:</label><br>
-            <input type="text" id="response" required>
-            <input type="submit" value="Submit">
-        </form>
+        <input type="button" value="Yes" onclick="showImage()">
     </div>
 
     <!-- Show image if the response was 'yes' -->
@@ -71,26 +59,23 @@
         <img src="strawberrycake.png" alt="Cake">
     </div>
 
-    <!-- Display an error message if 'yes' is not typed -->
-    <p id="error-message" style="display:none;">Please type 'yes' to see the gift!</p>
+    <!-- Display an error message if 'yes' is not clicked -->
+    <p id="error-message" style="display:none;">Please click the 'Yes' button to see the gift!</p>
 
     <script>
-        function checkResponse(event) {
-            event.preventDefault(); // Prevent the form from submitting
-
-            var response = document.getElementById('response').value.trim().toLowerCase();
+        function showImage() {
             var imageContainer = document.getElementById('image-container');
             var errorMessage = document.getElementById('error-message');
 
-            if (response === 'yes') {
-                // Show the image and hide the error message
-                imageContainer.style.display = 'block';
-                errorMessage.style.display = 'none';
-            } else {
-                // Show an error message if the response is not 'yes'
-                imageContainer.style.display = 'none';
-                errorMessage.style.display = 'block';
-            }
+            // Show the image and hide the error message
+            imageContainer.style.display = 'block';
+            errorMessage.style.display = 'none';
+        }
+
+        // Optional: In case user clicks but doesn't see the image
+        function showErrorMessage() {
+            var errorMessage = document.getElementById('error-message');
+            errorMessage.style.display = 'block';
         }
     </script>
 </body>
