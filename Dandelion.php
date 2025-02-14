@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php if ($show_image): ?>
         <div class="image-container">
             <h2>Here's a special Valentine's gift for you:</h2>
-            <img src="chocolates_flowers.jpg" alt="Chocolates and Flowers">
+            <img src="strawberrycake" alt="Cake">
         </div>
     <?php else: ?>
         <!-- Optional: Display a message if they haven't typed 'yes' -->
