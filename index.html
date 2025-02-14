@@ -58,7 +58,7 @@
         <h2>Here's a special Valentine's gift for you:</h2>
         <img src="gift.gif" alt="gift">
         
-        <!-- Continue button -->
+        <!-- Continue button for second image -->
         <div id="continue-button-container" style="margin-top: 20px; display:none;">
             <input type="button" value="Continue" onclick="showSecondImage()">
         </div>
@@ -68,6 +68,17 @@
     <div id="second-image-container" class="image-container" style="display:none;">
         <h2>Another surprise for you:</h2>
         <img src="gift2.jpg" alt="another-gift">
+        
+        <!-- Continue button for third image -->
+        <div id="continue-second-button-container" style="margin-top: 20px; display:none;">
+            <input type="button" value="Continue" onclick="showThirdImage()">
+        </div>
+    </div>
+
+    <!-- Show third image after clicking Continue -->
+    <div id="third-image-container" class="image-container" style="display:none;">
+        <h2>And here's a final surprise for you:</h2>
+        <img src="strawberrycake.png" alt="strawberrycake">
     </div>
 
     <!-- Display an error message if 'yes' is not clicked -->
@@ -87,9 +98,18 @@
 
         function showSecondImage() {
             var secondImageContainer = document.getElementById('second-image-container');
+            var continueSecondButtonContainer = document.getElementById('continue-second-button-container');
 
-            // Show the second image after the continue button is clicked
+            // Show the second image and the continue button for the third image
             secondImageContainer.style.display = 'block';
+            continueSecondButtonContainer.style.display = 'block'; // Show the second continue button
+        }
+
+        function showThirdImage() {
+            var thirdImageContainer = document.getElementById('third-image-container');
+
+            // Show the third image after the continue button is clicked
+            thirdImageContainer.style.display = 'block';
         }
     </script>
 </body>
