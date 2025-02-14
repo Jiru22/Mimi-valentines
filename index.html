@@ -1,19 +1,3 @@
-<?php
-// Initialize the variable for checking the form input
-$show_image = false;
-
-// Check if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Get the user input
-    $response = trim(strtolower($_POST['response']));
-
-    // Check if the response is 'yes'
-    if ($response === 'yes') {
-        $show_image = true; // Show the image if 'yes' is typed
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,6 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             width: 400px;
             max-width: 100%;
         }
+        p {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -71,24 +58,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- Form for user input -->
     <div class="form-container">
-        <form method="POST" action="">
+        <form id="valentine-form" onsubmit="return checkResponse(event)">
             <label for="response">Type 'yes' to see my gift:</label><br>
-            <input type="text" name="response" id="response" required>
+            <input type="text" id="response" required>
             <input type="submit" value="Submit">
         </form>
     </div>
 
     <!-- Show image if the response was 'yes' -->
-    <?php if ($show_image): ?>
-        <div class="image-container">
-            <h2>Here's a special Valentine's gift for you:</h2>
-            <img src="strawberrycake.png" alt="Cake">
-        </div>
-    <?php else: ?>
-        <!-- Optional: Display a message if they haven't typed 'yes' -->
-        <?php if ($_SERVER['REQUEST_METHOD'] == 'POST'): ?>
-            <p style="color: red;">Please type 'yes' to see the gift!</p>
-        <?php endif; ?>
-    <?php endif; ?>
+    <div id="image-container" class="image-container" style="display:none;">
+        <h2>Here's a special Valentine's gift for you:</h2>
+        <img src="strawberrycake.png" alt="Cake">
+    </div>
+
+    <!-- Display an error message if 'yes' is not typed -->
+    <p id="error-message" style="display:none;">Please type 'yes' to see the gift!</p>
+
+    <script>
+        function checkResponse(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            var response = document.getElementById('response').value.trim().toLowerCase();
+            var imageContainer = document.getElementById('image-container');
+            var errorMessage = document.getElementById('error-message');
+
+            if (response === 'yes') {
+                // Show the image and hide the error message
+                imageContainer.style.display = 'block';
+                errorMessage.style.display = 'none';
+            } else {
+                // Show an error message if the response is not 'yes'
+                imageContainer.style.display = 'none';
+                errorMessage.style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>
